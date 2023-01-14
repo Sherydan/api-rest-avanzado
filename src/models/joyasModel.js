@@ -4,7 +4,9 @@ const format = require("pg-format");
 const getJoyas = async ({ limits = 10, order_BY = "id_ASC", page = 0 }) => {
     try {
         const [campo, direccion] = order_BY.split("_");
-        const offset = (page - 1) * limits;
+        // offset cant be negative, so when page equals 0 offset is set to 0
+        const offset = (page == 0) ? 0 : (page - 1) * limits
+        // const offset = (page - 1) * limits;
         const formattedQuery = format(
             "SELECT * FROM inventory ORDER BY %s %s LIMIT %s OFFSET %s",
             campo,
