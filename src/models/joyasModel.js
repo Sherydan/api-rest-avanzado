@@ -13,6 +13,8 @@ const getJoyas = async ({ limits = 10, order_BY = "id_ASC", page = 0 }) => {
     );
 
     const {rows: joyas} = await pool.query(formattedQuery)
+
+    return joyas
 };
 
 module.exports = {getJoyas}
