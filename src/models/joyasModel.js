@@ -53,4 +53,4 @@ const getJoyasByFilters = async ({
     return joyas;
 };
 
-module.exports = { getJoyas };
+module.exports = { getJoyas, getJoyasByFilters };

@@ -1,4 +1,4 @@
-const { getJoyas } = require("../models/joyasModel");
+const { getJoyas, getJoyasByFilters } = require("../models/joyasModel");
 
 const getAllJoyas = async (req, res) => {
     try {
@@ -10,6 +10,16 @@ const getAllJoyas = async (req, res) => {
         res.status(500).json({ message: "Error while obtaining data" });
     }
 };
+
+const getFilteredJoyas = async (req, res) => {
+    try {
+        const joyas = await getJoyasByFilters(req.query)
+        res.json(joyas)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: "Error while obtaining data" });
+    }
+}
 
 const prepareHATEOAS = (joyas) => {
     const totalStock = joyas.reduce((s, j) => s + j.stock, 0)
@@ -30,4 +40,4 @@ const prepareHATEOAS = (joyas) => {
     return HATEOAS
 };
 
-module.exports = { getAllJoyas, };
+module.exports = { getAllJoyas, getFilteredJoyas };
