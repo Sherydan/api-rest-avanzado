@@ -12,7 +12,7 @@ const getAllJoyas = async (req, res) => {
 };
 
 const prepareHATEOAS = (joyas) => {
-    const totalStock = joyas.reduce((s, a) => s + a.stock, 0)
+    const totalStock = joyas.reduce((s, j) => s + j.stock, 0)
     const results = joyas.map((j) => {
         return {
             name: j.name,
