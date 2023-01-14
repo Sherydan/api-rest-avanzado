@@ -12,9 +12,9 @@ const getJoyas = async ({ limits = 10, order_BY = "id_ASC", page = 0 }) => {
             limits,
             offset
         );
-
+        console.log(formattedQuery)
         const { rows: joyas } = await pool.query(formattedQuery);
-
+        
         return joyas;
 
     } catch (error) {
