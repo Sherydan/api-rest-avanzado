@@ -1,7 +1,18 @@
-const {pool} = require("../helpers/connectionDb")
+const {pool} = require("../helpers/connectionDB")
+const { validateGetJoyasOrder} = require("../helpers/validation")
 const format = require("pg-format");
 
 const getJoyas = async ({ limits = 10, order_BY = "id_ASC", page = 0 }) => {
+    //check if arguments are null or undefined, if so set them to default values
+    if (!limits || limits == null || limits == undefined) limits = 10;
+    if (!order_BY || order_BY == null || order_BY == undefined) order_BY = "id_ASC";
+    if (!page || page == null || page == undefined) page = 0;
+    
+    //if order_BY is not valid, return error from validation.js
+    if (validateGetJoyasOrder(order_BY)) {
+        return joyas = {error: "Invalid order"};
+    }
+    
     try {
         const [campo, direccion] = order_BY.split("_");
         // offset cant be negative, so when page equals 0 offset is set to 0
