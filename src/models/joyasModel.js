@@ -1,4 +1,4 @@
-const pool = require("../helpers/connectionDb").getInstance();
+const {pool} = require("../helpers/connectionDb")
 const format = require("pg-format");
 
 const getJoyas = async ({ limits = 10, order_BY = "id_ASC", page = 0 }) => {
