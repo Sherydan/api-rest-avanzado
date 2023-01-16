@@ -8,7 +8,7 @@ const getJoyas = async ({ limits = 10, order_BY = "id_ASC", page = 0 }) => {
     if (!order_BY || order_BY == null || order_BY == undefined) order_BY = "id_ASC";
     if (!page || page == null || page == undefined) page = 0;
     
-    //if order_BY is not valid, return error from validation.js
+    //if order_BY is not valid, return error
     if (validateGetJoyasOrder(order_BY)) {
         return joyas = {error: "Invalid order"};
     }
